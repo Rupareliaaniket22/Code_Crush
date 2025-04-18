@@ -1,0 +1,13 @@
+# Root ignore
+node_modules/
+.env
+.DS_Store
+
+# Ignore frontend build artifacts
+frontend/node_modules/
+frontend/build/
+frontend/.env
+
+# Ignore backend stuff
+backend/node_modules/
+backend/.env
