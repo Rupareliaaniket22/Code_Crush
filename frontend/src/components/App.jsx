@@ -8,6 +8,7 @@ import Profile from "./Profile";
 import Profile1 from "./Profile";
 import Connections from "./Connections";
 import ReceivedRequests from "./ReceivedRequests";
+import ChatPage from "./ChatPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               path="/receivedRequests"
               element={<ReceivedRequests />}
             ></Route>
+            <Route path="/Chats/:toUserId" element={<ChatPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

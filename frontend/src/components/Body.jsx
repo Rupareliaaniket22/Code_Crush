@@ -42,10 +42,10 @@ const Body = () => {
     }
   }, []);
   return (
-    <div>
+    <>
       <NavBar />
       <Outlet />
-    </div>
+    </>
   );
 };
 

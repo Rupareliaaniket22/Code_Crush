@@ -29,7 +29,6 @@ const Feed = () => {
         { withCredentials: true }
       );
       dispatch(removeFeedUser(_id));
-      console.log("profile " + action);
     } catch (err) {
       console.log(err.message);
     }
@@ -38,8 +37,6 @@ const Feed = () => {
   useEffect(() => {
     getFeed();
   }, []);
-  console.log(feed);
-  console.log(feed?.length);
 
   if (feed === null || !feed || feed?.length === 0) {
     return (

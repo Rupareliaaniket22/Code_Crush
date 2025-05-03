@@ -62,7 +62,7 @@ const Profile = () => {
   if (!user) return <div>Loading....</div>;
 
   return (
-    <div className="w-full min-h-screen px-4 py-6 flex flex-col lg:flex-row gap-6 items-start justify-center">
+    <div className="w-full pt-20 min-h-screen px-4 py-6 flex flex-col lg:flex-row gap-6 items-start justify-center">
       <div className="w-full lg:w-1/2 bg-base-200 p-5 rounded-md shadow-2xl">
         <h1 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
           Edit Profile
@@ -101,7 +101,7 @@ const Profile = () => {
         </form>
       </div>
 
-      <div className="w-full lg:w-fit h-fit">
+      <div className="w-full flex flex-col items-center justify-center lg:w-fit h-fit">
         <h1 className="text-2xl lg:text-3xl font-bold text-gray-200 text-center py-3">
           Preview
         </h1>

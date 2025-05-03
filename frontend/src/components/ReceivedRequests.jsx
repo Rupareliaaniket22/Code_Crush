@@ -49,7 +49,7 @@ const ReceivedRequests = () => {
     );
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-base-200 to-base-300 py-10 px-4">
+    <div className="h-screen sm:w-screen bg-gradient-to-tr from-base-200 to-base-300 pt-20 ">
       <h1 className="text-2xl sm:text-4xl font-bold text-primary text-center mb-6">
         Connection Requests
       </h1>
@@ -58,8 +58,8 @@ const ReceivedRequests = () => {
       </p>
 
       {receivedRequests.length === 0 ? (
-        <div className="text-center py-16 bg-base-100 max-w-lg mx-auto rounded-xl shadow-md animate-fade-in-down">
-          <div className="text-6xl mb-4">📭</div>
+        <div className="text-center w-4/5 sm:w-full py-16 px-5 bg-base-100 max-w-lg mx-auto rounded-xl shadow-md animate-fade-in-down">
+          <div className="text-6xl mb-2">📭</div>
           <p className="text-base-content text-lg font-medium">
             No new requests
           </p>

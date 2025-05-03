@@ -14,13 +14,13 @@ const Card = ({
   type,
 }) => {
   return (
-    <div className="card  w-full max-w-sm bg-base-100 shadow-lg border border-base-300 rounded-2xl overflow-hidden transition-transform hover:scale-105 hover:shadow-xl duration-300">
+    <div className="card h-fit sm:h-fit pt-20 sm:pt-0  w-full max-w-sm bg-base-100 shadow-lg border border-base-300 rounded-2xl overflow-hidden transition-transform hover:scale-105 hover:shadow-xl duration-300">
       {/* Image Section */}
-      <figure className="md:h-78 h-56  w-full relative">
+      <figure className="sm:h-78 h-74  w-full relative">
         <img
           src={photoUrl ? photoUrl : DEFAULT_PHOTO_URL}
           alt={`${firstName} ${lastName}`}
-          className="w-full h-full object-cover"
+          className="w-full h-full "
         />
         {/* Overlay for gradient effect */}
         <div className="absolute inset-0 bg-gradient-to-t from-base-300/50 to-transparent"></div>

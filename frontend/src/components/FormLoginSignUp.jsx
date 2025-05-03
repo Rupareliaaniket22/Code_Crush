@@ -11,6 +11,7 @@ const FormLoginSignUp = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [error, setError] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,8 +41,8 @@ const FormLoginSignUp = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-base-200 to-base-300 flex sm:items-center justify-center sm:px-4 w-screen">
-      <div className="w-full max-w-md bg-base-100 rounded-xl shadow-md border border-base-300 sm:p-8 p-4 space-y-2 sm:space-y-4">
+    <div className="h-screen overflow-hidden bg-gradient-to-br from-base-200 to-base-300 flex sm:items-center sm:justify-center sm:px-4 w-screen">
+      <div className="sm:pt-20 pt-24 w-screen sm:max-w-md bg-base-100 rounded-xl shadow-md border border-base-300 sm:p-8 p-4 space-y-2 sm:space-y-4">
         <div className="sm:flex hidden  justify-center">
           <img
             src="logo.png"
@@ -58,7 +59,7 @@ const FormLoginSignUp = () => {
             : "Sign in to discover your perfect coding match."}
         </p>
 
-        <form className="space-y-4" onSubmit={handleFormSubmit}>
+        <form className="space-y-4 px-3 sm:px-0" onSubmit={handleFormSubmit}>
           {isSignUp && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
@@ -103,6 +104,7 @@ const FormLoginSignUp = () => {
               placeholder="codeCrush@gmail.com"
               className="input input-bordered w-full bg-base-200"
               value={emailId}
+              autoComplete="username"
               onChange={(e) => setEmailId(e.target.value)}
               required
             />
@@ -115,20 +117,38 @@ const FormLoginSignUp = () => {
               </span>
             </label>
             <input
-              type="password"
+              type={isPasswordVisible ? "text" : "password"}
               placeholder="••••••••"
+              autoComplete={isSignUp ? "new-password" : "current-password"}
               className="input input-bordered w-full bg-base-200"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+
+            {isSignUp && (
+              <div className="flex justify-between mt-2  items-center">
+                <label className="cursor-pointer label">
+                  <input
+                    type="checkbox"
+                    className="checkbox w-4  h-4"
+                    onChange={() => setIsPasswordVisible(!isPasswordVisible)}
+                  />
+                  <span className="label-text text-sm">Show Password</span>
+                </label>
+              </div>
+            )}
           </div>
 
           {!isSignUp && (
             <div className="flex justify-between items-center">
               <label className="cursor-pointer label">
-                <input type="checkbox" className="checkbox w-4 h-4" />
-                <span className="label-text text-sm">Remember me</span>
+                <input
+                  type="checkbox"
+                  className="checkbox w-4 h-4"
+                  onChange={() => setIsPasswordVisible(!isPasswordVisible)}
+                />
+                <span className="label-text text-sm">Show Password</span>
               </label>
               <a href="#" className="text-sm text-primary hover:underline">
                 Forgot password?

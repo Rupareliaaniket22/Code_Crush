@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL, DEFAULT_PHOTO_URL } from "../utils/constants";
-import { useDispatch, useSelector } from "react-redux";
+import Skills from "./Skills";
+import { AiOutlineMessage } from "react-icons/ai";
+import { Link } from "react-router";
 
 const Connections = () => {
   const [connections, setConnections] = useState([]);
@@ -25,10 +27,14 @@ const Connections = () => {
   }, []);
 
   if (loading)
-    return <div className="text-center text-xl pt-10">Loading...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-base-100 text-primary text-xl animate-pulse">
+        Loading...
+      </div>
+    );
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-base-200 to-base-300 py-10 px-2 sm:px-4">
+    <div className="min-h-screen pt-20 bg-gradient-to-tr from-base-200 to-base-300 py-10 px-2 sm:px-4">
       <h1 className="text-2xl sm:text-4xl font-bold text-primary text-center mb-10">
         Your Connections 💖
       </h1>
@@ -91,26 +97,13 @@ const Connections = () => {
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex flex-wrap gap-1 max-w-xs">
-                        {conn.skills?.length ? (
-                          conn.skills.slice(0, 3).map((skill, idx) => (
-                            <span
-                              key={idx}
-                              className="badge badge-sm badge-outline border-primary text-primary text-xs px-2"
-                            >
-                              {skill}
-                            </span>
-                          ))
-                        ) : (
-                          <span className="text-xs text-base-content/50 italic">
-                            None listed
-                          </span>
-                        )}
-                        {conn.skills?.length > 3 && (
-                          <span className="text-xs text-primary">
-                            +{conn.skills.length - 3} more
-                          </span>
-                        )}
+                        <Skills skills={conn.skills} type="LargeScreen" />
                       </div>
+                    </td>
+                    <td className="px-4 py-3">
+                      <Link to={"/Chats/" + conn._id}>
+                        <AiOutlineMessage className="text-primary text-2xl" />
+                      </Link>{" "}
                     </td>
                   </tr>
                 ))}
@@ -132,7 +125,6 @@ const Connections = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-
                 <div className="flex-1 min-w-0">
                   <div className="font-semibold text-base-content">
                     {conn.firstName} {conn.lastName}
@@ -141,21 +133,12 @@ const Connections = () => {
                     {conn.about || "No bio added yet."}
                   </div>
                   <div className="flex flex-wrap gap-1 mt-2">
-                    {conn.skills?.slice(0, 2).map((skill, idx) => (
-                      <span
-                        key={idx}
-                        className="badge badge-sm badge-outline border-primary text-primary text-xs px-2"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                    {conn.skills?.length > 2 && (
-                      <span className="text-xs text-primary">
-                        +{conn.skills.length - 2} more
-                      </span>
-                    )}
+                    <Skills skills={conn.skills} type="SmallScreen" />
                   </div>
                 </div>
+                <Link to={"/Chats/" + conn._id}>
+                  <AiOutlineMessage className="text-primary text-2xl" />
+                </Link>{" "}
               </div>
             ))}
           </div>
