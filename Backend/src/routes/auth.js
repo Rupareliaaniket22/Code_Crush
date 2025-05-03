@@ -43,7 +43,6 @@ authrouter.post("/login", async (req, res) => {
       if (isPasswordCorrect) {
         const { firstName, lastName, age, skills, photoUrl } = user;
         const token = await user.generateJwt();
-        console.log("token", token);
         res.cookie("token", token, {
           httpOnly: true,
           secure: false,

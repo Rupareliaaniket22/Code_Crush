@@ -77,8 +77,6 @@ const userSchema = new mongoose.Schema(
         const gender = this.gender?.toLowerCase?.();
         {
           if (gender) {
-            console.log(gender);
-            console.log(gender === "male");
             if (gender === "male") {
               return "https://avatar.iran.liara.run/public/boy#42";
             } else if (gender === "female") {
