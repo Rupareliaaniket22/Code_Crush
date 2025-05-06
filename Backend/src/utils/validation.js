@@ -12,7 +12,6 @@ const AllowedUpdates = (data) => {
     ALLOWED_UPDATES.includes(k)
   );
   if (!isUpdateAllowed) {
-    console.log("Updates to certain fields are not allowed");
     throw new Error("Updates to certain fields are not allowed");
   }
 };

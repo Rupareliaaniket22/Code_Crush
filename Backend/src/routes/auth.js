@@ -1,12 +1,17 @@
 const express = require("express");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const { authenticateUser } = require("../middlewares/auth");
 const authrouter = express.Router();
+const validatorHelper = require("validator");
 
 authrouter.post("/signup", async (req, res) => {
   const { firstName, lastName, emailId, password, skills, age, gender, about } =
     req.body;
   try {
+    if (!validatorHelper.isStrongPassword(password)) {
+      return res.status(400).send("Password is not strong enough");
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       firstName,
@@ -70,7 +75,7 @@ authrouter.post("/logout", async (req, res) => {
   res.send("user logged out successfully");
 });
 
-authrouter.delete("/deleteUser", async (req, res) => {
+authrouter.delete("/deleteUser", authenticateUser, async (req, res) => {
   const user_id = req.body.id;
 
   try {

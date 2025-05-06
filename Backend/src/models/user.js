@@ -30,11 +30,6 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      validate: {
-        validator: function (password) {
-          return validatorHelper.isStrongPassword(password);
-        },
-      },
     },
     Age: {
       type: Number,
@@ -73,20 +68,6 @@ const userSchema = new mongoose.Schema(
     },
     photoUrl: {
       type: String,
-      default: function () {
-        const gender = this.gender?.toLowerCase?.();
-        {
-          if (gender) {
-            if (gender === "male") {
-              return "https://avatar.iran.liara.run/public/boy#42";
-            } else if (gender === "female") {
-              return "https://avatar.iran.liara.run/public/girl#42";
-            } else {
-              return "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";
-            }
-          }
-        }
-      },
     },
   },
 

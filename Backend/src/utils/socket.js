@@ -35,7 +35,6 @@ const socket = (server) => {
       try {
         const roomId = createSecureRoomId(userId, toUserId);
         socket.join(roomId);
-        console.log(`${fullName} joined room ${roomId}`);
       } catch (err) {
         console.error("Join room error:", err.message);
         socket.emit("error", { message: err.message });

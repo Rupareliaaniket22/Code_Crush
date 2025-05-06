@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const profilerouter = express.Router();
 profilerouter.get("/profile", authenticateUser, (req, res) => {
   const user = req.user;
-  console.log(user);
+
   try {
     if (!user) throw new Error("unauthorized");
     res.send("hello" + user.firstName + user.lastName);
@@ -19,6 +19,7 @@ profilerouter.get("/profile/view", authenticateUser, (req, res) => {
   const user = req.user;
   try {
     if (!user) throw new Error("unauthorized");
+
     res.send(user);
   } catch (err) {
     res.status(404).send(err.message);
@@ -28,7 +29,6 @@ profilerouter.get("/profile/view", authenticateUser, (req, res) => {
 profilerouter.patch("/editProfile", authenticateUser, async (req, res) => {
   const user_id = req.user._id;
   const edited_data = req.body;
-  console.log("Getting it");
   try {
     AllowedUpdates(edited_data);
 
