@@ -1,21 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import { addFeed, removeFeedUser } from "../utils/feedSlice";
 
 const Feed = () => {
   const feed = useSelector((state) => state.feed);
+  const [hasMore, setHasMore] = useState(true);
   const dispatch = useDispatch();
   async function getFeed() {
     try {
-      if (feed) return;
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
       });
-
-      if (res.status === 200) dispatch(addFeed(res.data));
+      if (res.status === 200) {
+        const users = res.data;
+        if (users.length === 0) {
+          setHasMore(false);
+        } else {
+          dispatch(addFeed(users));
+        }
+      }
     } catch (err) {
       console.log(err.message);
     }
@@ -23,19 +29,26 @@ const Feed = () => {
 
   async function handleRequest(action, _id) {
     try {
-      const res = axios.post(
+      const res = await axios.post(
         BASE_URL + "/request/send/" + action + "/" + _id,
         {},
         { withCredentials: true }
       );
       dispatch(removeFeedUser(_id));
+
+      if (feed?.length === 1 && hasMore) {
+        getFeed();
+      }
     } catch (err) {
       console.log(err.message);
     }
   }
 
   useEffect(() => {
-    getFeed();
+    // Only fetch when feed is empty
+    if ((!feed || feed?.length === 0) && hasMore) {
+      getFeed();
+    }
   }, []);
 
   if (feed === null || !feed || feed?.length === 0) {
@@ -58,15 +71,15 @@ const Feed = () => {
       </div>
     );
   }
-  const { firstName, lastName, age, gender, about, photoUrl, skills, _id } =
+  const { firstName, lastName, Age, gender, about, photoUrl, skills, _id } =
     feed[0];
   return (
-    <div className="w-screen  h-screen flex items-center justify-center">
+    <div className="w-screen  sm:h-[95vh] h-screen flex items-center justify-center">
       {feed && (
         <Card
           firstName={firstName}
           lastName={lastName}
-          age={age}
+          Age={Age}
           gender={gender}
           about={about}
           photoUrl={photoUrl}

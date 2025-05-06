@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { createSocketConnection } from "../utils/socket";
 import axios from "axios";
 import { BASE_URL, DEFAULT_PHOTO_URL } from "../utils/constants";
@@ -190,9 +190,9 @@ const ChatPage = () => {
               <p className="mb-4 text-sm">
                 Connect with others to start chatting
               </p>
-              <button className="btn btn-primary btn-sm rounded-full">
+              <Link to="/feed" className="btn btn-primary btn-sm rounded-full">
                 Find People
-              </button>
+              </Link>
             </div>
           ) : (
             connections?.map((conn) => {

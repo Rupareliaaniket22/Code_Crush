@@ -21,7 +21,6 @@ const ReceivedRequests = () => {
 
   const handleRequest = async (requestId, action) => {
     try {
-      setLoading(true);
       await axios.post(
         BASE_URL + `/request/review/${action}/${requestId}`,
         {},
@@ -32,8 +31,6 @@ const ReceivedRequests = () => {
       );
     } catch (err) {
       console.error(`Failed to ${action} request:`, err);
-    } finally {
-      setLoading(false);
     }
   };
 
