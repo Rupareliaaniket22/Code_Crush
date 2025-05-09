@@ -21,7 +21,7 @@ const NavBar = () => {
     }
   }
   return (
-    <div className="navbar sm:bg-[#20222c] bg-base-100 z-[999]  fixed text-base-content px-6 border-b border-base-100 shadow-md ">
+    <div className="navbar  bg-base-100 z-[999]  fixed text-base-content px-6 border-b border-base-100 shadow-md ">
       <div className="flex-1">
         <Link
           to={`${user && Object.keys(user).length > 0 ? "/feed" : "/login"}`}
@@ -67,6 +67,11 @@ const NavBar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3  relative z-[999] p-2 shadow-xl bg-base-100 text-base-content rounded-box w-52 border border-base-200"
               >
+                <li>
+                  <Link to="/feed" className="hover:text-primary">
+                    Feed
+                  </Link>
+                </li>
                 <li>
                   <Link to="/profile" className="hover:text-primary">
                     Profile

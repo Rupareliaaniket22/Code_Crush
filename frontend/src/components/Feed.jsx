@@ -74,7 +74,7 @@ const Feed = () => {
   const { firstName, lastName, Age, gender, about, photoUrl, skills, _id } =
     feed[0];
   return (
-    <div className="w-screen  sm:h-[95vh] h-screen flex items-center justify-center">
+    <div className="w-screen pt-20  sm:h-[95vh] h-screen flex items-center justify-center">
       {feed && (
         <Card
           firstName={firstName}
