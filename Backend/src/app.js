@@ -15,7 +15,8 @@ const io = socket(server);
 const { chatRouter } = require("./routes/chat");
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173",
+"https://www.codecrush.diy/"],
     credentials: true,
   })
 );
