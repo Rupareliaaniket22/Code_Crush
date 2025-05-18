@@ -15,7 +15,7 @@ const io = socket(server);
 const { chatRouter } = require("./routes/chat");
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://www.codecrush.diy",
+  "https://codecrush.diy",
   "https://code-crush-frontend.vercel.app",
   "https://code-crush-frontend-33n4pg4mg-aniket-ruparelias-projects.vercel.app"
 ];
