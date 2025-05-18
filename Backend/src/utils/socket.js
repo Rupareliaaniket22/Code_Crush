@@ -13,9 +13,14 @@ function createSecureRoomId(fromUserId, toUserId) {
 const socket = (server) => {
   const io = socketIo(server, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: [
+        "http://localhost:5173",
+        "https://www.codecrush.diy",
+        "https://code-crush-frontend.vercel.app",
+      ],
       credentials: true,
     },
+    path: "/socket.io",
   });
 
   io.on("connection", async (socket) => {
