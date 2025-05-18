@@ -15,11 +15,16 @@ const io = socket(server);
 const { chatRouter } = require("./routes/chat");
 app.use(
   cors({
-    origin: ["http://localhost:5173",
-"https://www.codecrush.diy,https://code-crush-frontend.vercel.app,code-crush-frontend-33n4pg4mg-aniket-ruparelias-projects.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://www.codecrush.diy",
+      "https://code-crush-frontend.vercel.app",
+      "https://code-crush-frontend-33n4pg4mg-aniket-ruparelias-projects.vercel.app"
+    ],
     credentials: true,
   })
 );
+
 
 app.use(express.json());
 app.use(cookieParser());
