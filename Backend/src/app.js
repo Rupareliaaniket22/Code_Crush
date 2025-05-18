@@ -15,15 +15,24 @@ const io = socket(server);
 const { chatRouter } = require("./routes/chat");
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://www.codecrush.diy",
-      "https://code-crush-frontend.vercel.app",
-      "https://code-crush-frontend-33n4pg4mg-aniket-ruparelias-projects.vercel.app"
-    ],
+    origin: function (origin, callback) {
+      console.log("CORS origin request:", origin);
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "https://www.codecrush.diy",
+        "https://code-crush-frontend.vercel.app",
+        "https://code-crush-frontend-33n4pg4mg-aniket-ruparelias-projects.vercel.app"
+      ];
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
+
 
 
 app.use(express.json());
