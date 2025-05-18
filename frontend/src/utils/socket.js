@@ -1,13 +1,14 @@
 import { io } from "socket.io-client";
-import { BASE_URL } from "./constants";
-import { useSelector } from "react-redux";
 
-export const createSocketConnection = (user) => {
-  if (location.hostname === "localhost") {
-    return io(BASE_URL, {
-      withCredentials: true,
-    });
-  } else {
-    return io("/", { path: "/api/socket.io" });
-  }
+const socketUrl =
+  location.hostname === "localhost"
+    ? "http://localhost:3000"
+    : "https://codecrush-production.up.railway.app";
+
+export const createSocketConnection = () => {
+  return io(socketUrl, {
+    withCredentials: true,
+    path: "/socket.io",
+    transports: ["websocket"], // optional but can help avoid polling issues
+  });
 };
